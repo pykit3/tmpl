@@ -3,4 +3,7 @@ jinja2==2.10.1
 PyYAML==5.1
 
 
-pk3ut==0.1.6
+sphinx==3.0.3
+
+
+k3ut==0.1.6
