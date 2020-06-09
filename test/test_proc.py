@@ -3,10 +3,10 @@ import sys
 import time
 import unittest
 
-import pk3proc
-import pk3ut
+import k3proc
+import k3ut
 
-dd = pk3ut.dd
+dd = k3ut.dd
 
 this_base = os.path.dirname(__file__)
 
@@ -32,7 +32,7 @@ class TestProcError(unittest.TestCase):
     def test_procerror(self):
         inp = (1, 'out', 'err', ['ls', 'a', 'b'], {"close_fds": True})
         ex_args = (1, 'out', 'err', ['out'], ['err'],  ['ls', 'a', 'b'], {"close_fds": True})
-        ex = pk3proc.CalledProcessError(*inp)
+        ex = k3proc.CalledProcessError(*inp)
 
         self.assertEqual(ex_args, (ex.returncode,
                                    ex.stdout,
