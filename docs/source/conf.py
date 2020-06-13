@@ -1,9 +1,10 @@
 import os
 import sys
 
+import _building
+
 sys.path.insert(0, os.path.abspath('../..'))
 
-import _building
 
 (project,
  pkg,
@@ -17,4 +18,4 @@ import _building
  master_doc,
  html_theme,
  html_static_path,
-) = _building.sphinx_confs("this-package")
+ ) = _building.sphinx_confs("this-package")

@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import os
-import imp
-import yaml
-import jinja2
 import doctest
+import imp
+import os
+
+import jinja2
+import yaml
 
 # xxx/_building/build_readme.py
 this_base = os.path.dirname(__file__)
@@ -16,6 +17,7 @@ j2vars = {}
 pkg = imp.load_source("_foo", '__init__.py')
 j2vars["name"] = pkg._name
 
+
 def get_gh_config():
     with open('.github/settings.yml', 'r') as f:
         cont = f.read()
@@ -25,6 +27,7 @@ def get_gh_config():
     tags = [x.strip() for x in tags]
     cfg['repository']['topics'] = tags
     return cfg
+
 
 cfg = get_gh_config()
 j2vars['description'] = cfg['repository']['description']
@@ -41,7 +44,9 @@ def get_examples(pkg):
 
     return '\n'.join(rst)
 
+
 j2vars['synopsis'] = get_examples(pkg)
+
 
 def render_j2(tmpl_path, tmpl_vars, output_path):
     template_loader = jinja2.FileSystemLoader(searchpath='./')
@@ -54,7 +59,8 @@ def render_j2(tmpl_path, tmpl_vars, output_path):
     with open(output_path, 'w') as f:
         f.write(txt)
 
+
 if __name__ == "__main__":
     render_j2('_building/README.md.j2',
-       j2vars,
-       'README.md')
+              j2vars,
+              'README.md')
