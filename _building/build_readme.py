@@ -4,6 +4,7 @@
 import doctest
 import imp
 import os
+import sys
 
 import jinja2
 import yaml
