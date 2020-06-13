@@ -1,9 +1,13 @@
 import os
 import sys
 
-import _building
-
 sys.path.insert(0, os.path.abspath('../..'))
+
+# use a try to force not to reorder sys.path and import.
+try:
+    import _building
+except Exception as e:
+    raise e
 
 
 (project,
