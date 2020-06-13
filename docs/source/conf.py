@@ -3,6 +3,9 @@ import sys
 
 sys.path.insert(0, os.path.abspath('../..'))
 
+# In order to find indirect dependency
+sys.path.insert(0, os.path.abspath('../../..'))
+
 # use a try to force not to reorder sys.path and import.
 try:
     import _building
