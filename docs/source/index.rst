@@ -12,6 +12,10 @@ pykit3 is is a collection of toolkit in python3.
    :maxdepth: 2
    :caption: Contents:
 
+.. contents::
+   :depth: 4
+   :local:
+
 Documentation for the Code
 **************************
 

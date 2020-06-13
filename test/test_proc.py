@@ -11,7 +11,7 @@ dd = k3ut.dd
 this_base = os.path.dirname(__file__)
 
 
-class TestProcError(unittest.TestCase):
+class TestPackage(unittest.TestCase):
 
     foo_fn = '/tmp/foo'
 
@@ -30,16 +30,4 @@ class TestProcError(unittest.TestCase):
         self._clean()
 
     def test_procerror(self):
-        inp = (1, 'out', 'err', ['ls', 'a', 'b'], {"close_fds": True})
-        ex_args = (1, 'out', 'err', ['out'], ['err'],  ['ls', 'a', 'b'], {"close_fds": True})
-        ex = k3proc.CalledProcessError(*inp)
-
-        self.assertEqual(ex_args, (ex.returncode,
-                                   ex.stdout,
-                                   ex.stderr,
-                                   ex.out,
-                                   ex.err,
-                                   ex.cmd,
-                                   ex.options))
-
-        self.assertEqual(inp, ex.args)
+        pass
