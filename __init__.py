@@ -26,4 +26,4 @@ Run a command::
 # from .proc import ProcError
 
 __version__ = "0.2.2"
-_name = "pk3proc"
+__name__ = "k3proc"
