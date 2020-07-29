@@ -47,7 +47,12 @@ def get_examples(pkg):
         rst.append('>>> ' + e.source.strip())
         rst.append(e.want.strip())
 
-    return '\n'.join(rst)
+    if rst == []:
+        with open("synopsis.txt", 'r') as f:
+            return f.read()
+
+    rst =  '\n'.join(rst)
+    return rst
 
 
 j2vars['synopsis'] = get_examples(pkg)
