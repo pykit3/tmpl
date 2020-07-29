@@ -6,7 +6,7 @@
 this-package
 ==========
 
-pykit3 is is a collection of toolkit in python3.
+.. automodule:: this-package
 
 .. toctree::
    :maxdepth: 2
@@ -18,9 +18,6 @@ pykit3 is is a collection of toolkit in python3.
 
 Documentation for the Code
 **************************
-
-.. automodule:: this-package
-
 
 Exceptions
 ----------
