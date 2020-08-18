@@ -1,12 +1,12 @@
-.. this-package documentation master file, created by
+.. tmpl documentation master file, created by
    sphinx-quickstart on Thu May 14 16:58:55 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-this-package
-==========
+tmpl
+============
 
-.. automodule:: this-package
+.. automodule:: tmpl
 
 .. toctree::
    :maxdepth: 2
@@ -22,18 +22,13 @@ Documentation for the Code
 Exceptions
 ----------
 
-.. autoexception::  CalledProcessError
-.. autoexception::  ProcError
-.. autoexception::  TimeoutExpired
+.. autoexception::  SomeError
 
 
 Functions
 ---------
 
-.. autofunction::  command
-.. autofunction::  command_ex
-.. autofunction::  shell_script
-.. autofunction::  start_process
+.. autofunction::  foo
 
 Indices and tables
 ==================

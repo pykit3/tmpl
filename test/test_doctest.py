@@ -1,8 +1,8 @@
 import doctest
 
-import pkgname
+import tmpl
 
 
 def load_tests(loader, tests, ignore):
-    tests.addTests(doctest.DocTestSuite(pkgname))
+    tests.addTests(doctest.DocTestSuite(tmpl))
     return tests

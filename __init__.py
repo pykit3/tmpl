@@ -27,3 +27,6 @@ Run a command::
 
 __version__ = "0.2.2"
 __name__ = "k3proc"
+
+from .proc import foo
+from .proc import SomeError

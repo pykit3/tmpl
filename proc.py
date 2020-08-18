@@ -13,3 +13,9 @@ if hasattr(sys, 'getfilesystemencoding'):
 
 if defenc is None:
     defenc = sys.getdefaultencoding()
+
+class SomeError(Exception):
+    pass
+
+def foo():
+    pass
