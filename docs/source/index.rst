@@ -25,6 +25,13 @@ Exceptions
 .. autoexception::  SomeError
 
 
+Classes
+----------
+
+.. autoclass::  Bar
+    :members:
+
+
 Functions
 ---------
 

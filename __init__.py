@@ -30,3 +30,7 @@ __name__ = "k3proc"
 
 from .proc import foo
 from .proc import SomeError
+
+class Bar(object):
+    def foo(self):
+        pass
