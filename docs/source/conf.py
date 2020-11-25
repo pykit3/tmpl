@@ -25,4 +25,4 @@ except Exception as e:
  master_doc,
  html_theme,
  html_static_path,
- ) = _building.sphinx_confs("this-package")
+ ) = _building.sphinx_confs()
