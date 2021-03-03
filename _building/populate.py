@@ -6,12 +6,13 @@ Populate tmpl to a real repo
 """
 
 import os
-import shutil
 import re
 import jinja2
 
+
 def pjoin(*args):
     return os.path.join(*args)
+
 
 def cp(fn):
 
@@ -29,10 +30,11 @@ def cp(fn):
 
     vs = {'name': name,
           'nameBig': name[0].upper() + name[1:],
-    }
+          }
 
     print("populate ", src, " to ", dst)
     render_j2(src, vs, dst)
+
 
 def render_j2(tmpl_path, tmpl_vars, output_path):
     template_loader = jinja2.FileSystemLoader(searchpath='./')
@@ -44,6 +46,7 @@ def render_j2(tmpl_path, tmpl_vars, output_path):
 
     with open(output_path, 'w') as f:
         f.write(txt)
+
 
 if __name__ == "__main__":
     for root, dirs, files in os.walk("_building/tmpl"):
