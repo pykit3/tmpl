@@ -43,13 +43,10 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pip install setuptools wheel twine
         cp setup.py ..
         cd ..
-        python setup.py sdist bdist_wheel
-        pip install dist/*.tar.gz
+        python setup.py install
         cd -
-        pytest
         PATH="$PATH:$(npm bin)" pytest
 
     - uses: actions/upload-artifact@v2
