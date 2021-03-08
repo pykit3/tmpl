@@ -47,7 +47,7 @@ jobs:
         cd ..
         python setup.py install
         cd -
-        PATH="$PATH:$(npm bin)" pytest
+        sudo env "PATH=$PATH:$(npm bin)" pytest
 
     - uses: actions/upload-artifact@v2
       if: failure()
