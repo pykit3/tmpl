@@ -11,7 +11,13 @@ python:
   - "3.8"
   - pypy3
 install:
-    - pip install -r requirements.txt
+    - |
+      pip install flake8 pytest
+      if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+      if [ -f package.json ]; then npm install; fi
+      if [ -f packages.txt ]; then cat packages.txt | xargs sudo apt-get install; fi
+      pip install -r _building/building-requirements.txt
 script:
     - sudo env "PATH=$PATH" python --version          # environment check
     - sudo env "PATH=$PATH" python -c 'import sys; print(sys.version)'           # environment check
@@ -19,23 +25,17 @@ script:
 
     # Enable debug log: UT_DEBUG=1
     - |
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
-        if [ -f package.json ]; then npm install; fi
-        if [ -f packages.txt ]; then cat packages.txt | xargs sudo apt-get install; fi
 
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+      flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-        cp setup.py ..
-        cd ..
-        python setup.py install
-        cd -
-        sudo env "PATH=$PATH:$(npm bin)" pytest -v
+      cp setup.py ..
+      cd ..
+      python setup.py install
+      cd -
+      sudo env "PATH=$PATH:$(npm bin)" pytest -v
 
-        pip install -r _building/building-requirements.txt
-        make -C docs html
+      make -C docs html
 
 # after_success:
 #   - pip install python-coveralls && coveralls
