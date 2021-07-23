@@ -35,6 +35,8 @@ def cp(fn):
     print("populate ", src, " to ", dst)
     render_j2(src, vs, dst)
 
+    os.unlink(src)
+
 
 def render_j2(tmpl_path, tmpl_vars, output_path):
     template_loader = jinja2.FileSystemLoader(searchpath='./')
