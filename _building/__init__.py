@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-import imp
+import importlib.util
 import sys
 
 # sys.path.insert(0, os.path.abspath('..'))
@@ -75,7 +75,33 @@ def sphinx_confs():
 
     print("sys.path:", sys.path)
 
-    pkg = imp.load_source("foo", '../../__init__.py')
+    # Add the parent directory to sys.path temporarily to allow proper imports
+    import os
+    parent_dir = os.path.dirname(os.path.dirname(__file__))
+    if parent_dir not in sys.path:
+        sys.path.insert(0, parent_dir)
+
+    # Read the __init__.py file to get the package name
+    init_file = os.path.join(parent_dir, '__init__.py')
+    package_name = None
+
+    with open(init_file, 'r') as f:
+        for line in f:
+            if line.strip().startswith('__name__'):
+                # Extract package name from __name__ = "package_name"
+                package_name = line.split('=')[1].strip().strip('"\'')
+                break
+
+    if not package_name:
+        # Fallback: use directory name
+        package_name = os.path.basename(parent_dir)
+
+    # Load the module with proper package context using importlib
+    spec = importlib.util.spec_from_file_location(package_name, init_file)
+    pkg = importlib.util.module_from_spec(spec)
+    sys.modules[package_name] = pkg  # Add to sys.modules so relative imports work
+    spec.loader.exec_module(pkg)
+
     return (
         pkg.__name__,
         pkg,
