@@ -17,7 +17,7 @@ jobs:
         # python-3.6 in it: https://github.com/actions/setup-python/issues/544#issuecomment-1320295576
         # To fix it: use os: [ubuntu-20.04] instead
         os: [ubuntu-latest]
-        python-version: [3.9, 3.10, 3.11, 3.12]
+        python-version: [3.9, "3.10", 3.11, 3.12]
 
     steps:
     - uses: actions/checkout@v5
@@ -73,7 +73,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.9, 3.10, 3.11, 3.12]
+        python-version: [3.9, "3.10", 3.11, 3.12]
 
     steps:
     - uses: actions/checkout@v5
@@ -99,7 +99,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        python-version: [3.9, 3.10, 3.11, 3.12]
+        python-version: [3.9, "3.10", 3.11, 3.12]
 
     steps:
     - uses: actions/checkout@v5
