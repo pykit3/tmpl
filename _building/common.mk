@@ -1,8 +1,11 @@
 all: test readme doc
 
 .PHONY: test
-test:
+sudo_test:
 	sudo env "PATH=$$PATH" UT_DEBUG=0 PYTHONPATH="$$(cd ..; pwd)" python -m unittest discover -c --failfast -s .
+
+test:
+	env "PATH=$$PATH" UT_DEBUG=0 PYTHONPATH="$$(cd ..; pwd)" python -m unittest discover -c --failfast -s .
 
 doc:
 	make -C docs html
