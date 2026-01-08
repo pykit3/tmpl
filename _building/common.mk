@@ -1,14 +1,20 @@
 all: test lint readme doc
 
-.PHONY: test lint
-sudo_test:
-	sudo env "PATH=$$PATH" UT_DEBUG=0 PYTHONPATH="$$(cd ..; pwd)" python -m unittest discover -c --failfast -s .
+.PHONY: test lint cov
 
 test:
-	env "PATH=$$PATH" UT_DEBUG=0 PYTHONPATH="$$(cd ..; pwd)" python -m unittest discover -c --failfast -s .
+	env UT_DEBUG=0 pytest -v
+
+sudo_test:
+	sudo env "PATH=$$PATH" UT_DEBUG=0 pytest -v
+
+cov:
+	coverage run --source=. -m pytest
+	coverage html
+	open htmlcov/index.html
 
 doc:
-	make -C docs html
+	mkdocs build
 
 lint:
 	# ruff format: fast Python code formatter (Black-compatible)
@@ -21,13 +27,13 @@ static_check:
 	uvx mypy . --ignore-missing-imports
 
 readme:
-	python _building/build_readme.py
+	pk3 readme
 
-build_setup_py:
-	PYTHONPATH="$$(cd ..; pwd)" python _building/build_setup.py
+release:
+	pk3 tag
 
 publish:
-	./_building/publish.sh
+	pk3 publish
 
 install:
-	./_building/install.sh
+	pip install -e .

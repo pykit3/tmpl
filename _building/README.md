@@ -1,23 +1,27 @@
-# building
-building toolkit for pykit3 repos
+# Build System
 
-This repo should be included in a package, e.g.:
+This directory contains shared build configuration for pykit3 packages.
 
-```
-vcs/pykit3/k3handy/
-▸ .git/
-▸ .github/
-▸ __pycache__/
-▾ _building/ <-- this repo
-     ...
-```
+## Files
 
-# Publish python package:
+- `common.mk` - Makefile targets included by the root Makefile
 
-- `make build_setup_py` does the following steps:
-    - Builds the `setup.py` and commit it.
-    - Add a git tag with the name of `"v" + __init__.__ver__`.
+## Make Targets
 
-- Then `git push` the tag, github Action in the `.github/workflows/python-pubish.yml` will publish a package to `pypi`.
+| Target | Description |
+|--------|-------------|
+| `make test` | Run tests with pytest |
+| `make lint` | Format and lint with ruff |
+| `make doc` | Build documentation with MkDocs |
+| `make readme` | Generate README.md with pk3 |
+| `make release` | Bump version and create tag with pk3 |
+| `make publish` | Publish to PyPI with pk3 |
+| `make install` | Install package in editable mode |
+| `make cov` | Run tests with coverage report |
 
-    The action spec is copied from template repo: `github.com/pykit3/tmpl`.
+## Dependencies
+
+- `pk3` - pykit3 CLI tool for readme generation, tagging, and publishing
+- `pytest` - Test runner
+- `ruff` - Python linter and formatter
+- `mkdocs` - Documentation generator
